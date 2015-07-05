@@ -20,56 +20,10 @@
   }
 
   // load textdomain for translation
-  add_action('after_setup_theme', 'whitewater_setup');
-  function whitewater_setup(){
-    load_theme_textdomain('whitewater', get_template_directory() . '/languages');
+  add_action('after_setup_theme', 'onlinesubidha');
+  function onlinesubidha(){
+    load_theme_textdomain('onlinesubidha', get_template_directory() . '/languages');
   }
-  // Filter to translate the ACF Fields
-  function acf_translate_fields( $field ){
-    $field['label' ]        = __( $field['label' ],'acf');
-    $field['instructions' ] = __( $field['instructions' ],'acf');
-    return $field;
-  }
-  add_filter('acf/load_field', 'acf_translate_fields');
- //gives excerpt with custom length (used in footer)
- the_excerpt_max_charlength(65);
- function the_excerpt_max_charlength($charlength) {
-  $excerpt = get_the_excerpt();
-  $charlength++;
-  if ( mb_strlen( $excerpt ) > $charlength ) {
-
-    $subex = mb_substr( $excerpt, 0, $charlength - 5 );
-
-    $exwords = explode( ' ', $subex );
-
-    $excut = -( mb_strlen(mb_strwidth( $exwords[ count( $exwords ) - 1 ] ) ));
-
-    if ( $excut < 0 ) {
-
-      echo mb_substr( $subex, 0, $excut );
-
-    } else {
-
-      echo $subex;
-
-    }
-
-    echo '...';
-
-  } else {
-
-    echo $excerpt;
-
-  }
-
- }
-
- function change_excerpt_length($charlength) {
-    return 100;
-  }
-
-  add_filter('excerpt_length', 'change_excerpt_length');
-
 
   //give  short title of post page
   function custom_shortTitle($after = '', $length, $content = null) {
@@ -112,52 +66,8 @@
      echo $excerpt;
    }
   }
-  //give  short description of image slider in detail page of building
-  function custom_slider_description($after = '', $length, $description) {
-    $smy_description = strip_tags($description);
-    if (mb_strwidth($smy_description) > $length) {
-      $smy_description = mb_strimwidth($smy_description, 0, $length, '');
-      echo $smy_description . $after;
-    }
-    else{
-      echo $smy_description;
-    }
-  }
-  //give  short title of image slider in detail page of building
-  function custom_slider_title($after = '', $length, $title) {
-    $smy_title = strip_tags($title);
-    // if(strlen($smytitle) != strlen(utf8_decode($smytitle))){
-    //   $length = $length;
-    // }else
-    // {
-    //   // $length = $length + 10;
-    //   $length = mb_strwidth($smy_title);
-    // }
-
-    if (mb_strwidth($smy_title) > $length) {
-      $smy_title = mb_strimwidth($smy_title, 0, $length);
-      echo $smy_title . $after;
-    }
-    else{
-      echo $smy_title;
-    }
-  }
-
-  /*give  short title of posts in sitemap page used inside plugin(wp-sitemap-page.php #~747*/
-  function sitemap_post_short_title($after = '', $length, $title) {
-    $smy_title = strip_tags($title);
-    if (mb_strwidth($smy_title) > $length) {
-      $smy_title = mb_strimwidth($smy_title, 0, $length);
-      return $smy_title . $after;
-    }
-    else{
-      return $smy_title;
-    }
-  }
 
   // to add custom css to admin
-
-
   function my_custom_css() {
     $path = get_template_directory_uri();
     echo "<link rel='stylesheet' href='$path/css/admin-custom.css' type='text/css' media='all' />";
@@ -165,20 +75,23 @@
   add_action('login_head', 'my_custom_css');
   add_action('admin_head', 'my_custom_css');
 
+  /*custom admin login logo link and title*/
+   function my_login_logo_url() {
+      return home_url();
+   }
+   add_filter( 'login_headerurl', 'my_login_logo_url' );
+   function my_login_logo_url_title() {
+      return 'Powered By Kintech';
+   }
+   add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
   //adding our own favicon to wp-admin
   function whitewater_favicon(){
     echo '<link rel="shortcut icon" type="image/x-icon" href="',get_template_directory_uri(),'/images/favicon.ico" />',"\n";
     echo '<link rel="icon" type="image/x-icon" href="',get_template_directory_uri(),'/images/favicon.ico" />',"\n";
   }
-
   add_action('admin_head','whitewater_favicon');
   add_action('login_head', 'whitewater_favicon');
-  // add_action('wp_head', 'whitewater_favicon');
-
-  //redirecting admin logo link to homepage
-  function new_wp_login_url(){
-   return home_url();
-  }add_filter('login_headurl','new_wp_login_url');
 
   //hide Header Menu bar of ADMIN
   function remove_admin_bar_menu( $wp_admin_bar ) {
@@ -251,6 +164,8 @@
     add_image_size('banner',1400,327,true);
     add_image_size('feature-news-footer',70,70,true);
     add_image_size('feature-news-date-archive',170,90,true);
+    add_image_size('cat_header_image',21,23,true);
+    add_image_size('cat_feature_image',199,154,true);
   }
   /*@mahen*/
   /*hiding comment menu from admin*/
@@ -298,6 +213,22 @@
     return $where;  
   }
   add_filter( 'getarchives_where','my_custom_post_type_archive_where',10,2);
+
+  /*get current page slug*/
+  function get_current_page(){
+    global $post;
+    $slug = get_post($post)->post_name;
+    return $slug;
+  }
+  /*get current category slug*/
+  function get_cat_slug(){
+   if(is_category()){
+    $cats = get_query_var('cat');
+    $cat = get_category($cats);
+    return $cat->slug;
+   } 
+   
+  }
 
   // get taxonomy term name.used to echo termname of each post in archive.
   function custom_taxonomies_terms_names(){

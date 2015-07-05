@@ -32,126 +32,42 @@
             <p class="heading"> Category </p> 
             <hr class="rtliner" >       
             <ul class="thumbnails">
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                  	<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
-              <li class="span3">
-                <div class="thumbnail">
-                  <div class="caption">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png" alt="">
-                    
-                    <h3>Hotel</h3>
-                  </div>  
-                  <div class="thumbnail-pad">
-                      <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg" alt="" >
-                      <p class="count">4 listing</p>
-                      <p>Praesent vestibulum molestie lacus. Aenean my hendrerit mauris. Phasellus porta. Fusce suscipit varius mi.</p>
-                     
-                  </div>
-                </div>
-              </li>
+              <?php
+              $args = array('taxonomy' => 'list_cat');
+              $categories=get_categories($args);
+              foreach($categories as $category) {
+                if ( 0 == $category->category_parent ) {
+                  $cat_header_image = get_field('cat_header_image',$category->taxonomy.'_'.$category->term_id);
+                  $cat_feature_image = get_field('cat_feature_image',$category->taxonomy.'_'.$category->term_id);
+                  $img_src1 = $cat_header_image['sizes']['cat_header_image'];
+                  $img_src2 = $cat_feature_image['sizes']['cat_feature_image'];
+                  ?>
+                  <li class ="span3">
+                    <div class="thumbnail">
+                      <div class="caption">
+                        <?php
+                          if($img_src1){?>
+                            <img src="<?php echo $img_src1; ?>">
+                            <?php }else{
+                            ?><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotelicon.png"><?php
+                          }
+                         ?>
+                        <h3><?php echo $category->name; ?></h3>
+                      </div> 
+                      <div class="thumbnail-pad">
+                        <?php
+                          if($img_src2){?>
+                            <img src="<?php echo $img_src2; ?>">
+                            <?php }else{
+                            ?><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/hotel.jpg"><?php
+                          }
+                         ?>
+                        <p class="count"><?php echo $category->count; ?> listing</p>
+                        <p><?php echo $category->category_description; ?></p>
+                      </div> 
+                    </div>
+                  </li>
+            <?php }}?>
             </ul>
           	<nav role="navigation">
           		<ul class="cd-pagination no-space">

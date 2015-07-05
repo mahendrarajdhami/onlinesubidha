@@ -1,12 +1,10 @@
 <?PHP 
-$pageName = basename($_SERVER['REQUEST_URI'] );
-$pageNameArray = array('index.php','about.php',  'contact.php');
-
-$arr = explode("?", $pageName);
-$pageName = $arr[0];
-
-if(!in_array($pageName, $pageNameArray))
-  $pageName = 'index.php';
+// $pageName = basename($_SERVER['REQUEST_URI'] );
+// $pageNameArray = array('index.php','about.php',  'contact.php');
+// $arr = explode("?", $pageName);
+// $pageName = $arr[0];
+// if(!in_array($pageName, $pageNameArray))
+//   $pageName = 'index.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,13 +53,14 @@ if(!in_array($pageName, $pageNameArray))
                 </span>
               </div>
               <div class="navbar-left"></div>
+
               <div class="navbar navbar_">
                 <div class="navbar-inner navbar-inner_">
                   <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>                                                   
                     <div class="nav-collapse nav-collapse_ collapse">
                       <ul class="nav sf-menu">
-                        <li <?php if($pageName=="index.php") echo "class='active li-first'";?>><a href="index.php"><em class="hidden-phone"></em><span class="visible-phone">Home</span></a></li>
+                        <li <?php if(is_home()) echo "class='active li-first'";?>><a href="<?php echo get_home_url(); ?>"><em class="hidden-phone"></em><span class="visible-phone">Home</span></a></li>
                         <li class="sub-menu"><a href="#">Online Add</a>
                           <ul>
                             <li><a href="#">Welcome Message</a></li>
@@ -81,7 +80,7 @@ if(!in_array($pageName, $pageNameArray))
                         <li <?php if($pageName=="addbooking.php") echo "class='active'";?>><a href="addbooking.php">Add Booking</a></li>
                         <li <?php if($pageName=="CHAUSSURES.php") echo "class='active'";?>><a href="#">CHAUSSURES FEMME</a></li>
                         <li <?php if($pageName=="links.php") echo "class='active'";?>><a href="links.php">Link</a></li>
-                        <li <?php if($pageName=="news.php") echo "class='active'";?>><a href="news.php">News</a></li>
+                        <li <?php if(get_current_page() =="newspapers") echo "class='active'";?>><a href="<?php echo site_url() ?>/newspapers">News</a></li>
                         <li <?php if($pageName=="download.php") echo "class='active'";?>><a href="download.php">Download</a></li>
                         <li <?php if($pageName=="Femme.php") echo "class='active'";?>><a href="#">Femme</a></li>
                       </ul>
