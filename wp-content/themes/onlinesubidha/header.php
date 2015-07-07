@@ -21,7 +21,7 @@
     <meta name="GOOGLEBOT" content="index, follow"/>
     <meta name="robots" content="index, follow"/>
     <title>Online Subidha Online Directory For Nepal </title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
   <?php wp_head(); ?>
   </head>
   <body>
@@ -79,9 +79,9 @@
                         </li>
                         <li <?php if($pageName=="addbooking.php") echo "class='active'";?>><a href="addbooking.php">Add Booking</a></li>
                         <li <?php if($pageName=="CHAUSSURES.php") echo "class='active'";?>><a href="#">CHAUSSURES FEMME</a></li>
-                        <li <?php if($pageName=="links.php") echo "class='active'";?>><a href="links.php">Link</a></li>
+                        <li <?php if(get_current_page() =="links") echo "class='active'";?>><a href="<?php echo site_url() ?>/links">Link</a></li>
                         <li <?php if(get_current_page() =="newspapers") echo "class='active'";?>><a href="<?php echo site_url() ?>/newspapers">News</a></li>
-                        <li <?php if($pageName=="download.php") echo "class='active'";?>><a href="download.php">Download</a></li>
+                        <li <?php if(get_current_page() =="downloads") echo "class='active'";?>><a href="<?php echo site_url() ?>/downloads">Download</a></li>
                         <li <?php if($pageName=="Femme.php") echo "class='active'";?>><a href="#">Femme</a></li>
                       </ul>
                     </div>

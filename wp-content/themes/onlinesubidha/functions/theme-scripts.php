@@ -10,5 +10,5 @@ function onlinesubidha_js() {
   wp_enqueue_script('modernizr', get_template_directory_uri() .'/js/modernizr.js','','', false);
   wp_enqueue_script('jquery.mobile.customized.min', get_template_directory_uri() .'/js/jquery.mobile.customized.min.js','','', false);
   wp_enqueue_script('custom', get_template_directory_uri() .'/js/custom.js','','', true);
-  // wp_enqueue_script('bootstrap', get_template_directory_uri() .'/js/bootstrap.js','','', true);
+  wp_enqueue_script('bootstrap', get_template_directory_uri() .'/js/bootstrap.js','','', true);
 }
