@@ -69,7 +69,7 @@
                   </li>
             <?php }}?>
             </ul>
-          	<nav role="navigation">
+          <!-- 	<nav role="navigation">
           		<ul class="cd-pagination no-space">
           			<li class="button"><a href="#0">Prev</a></li>
           			<li><a href="#0">1</a></li>
@@ -86,7 +86,7 @@
           			<li><a href="#0">20</a></li>
           			<li class="button"><a href="#0">Next</a></li>
           		</ul>
-          	</nav> <!-- cd-pagination-wrapper -->
+          	</nav>-->
           </div>
           <div class="span3 top20">
             <div class="advertise-box-side bottom20"> 
@@ -108,7 +108,7 @@
                       <div class="Rounded_Rectangle_12"> 
                           <div class="span9"> <h3>Add Your Company To Our Catalog. <span class="color1"> Its FREE !! </span> </h3> <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde </p>  </div>
                           <div class="span3 pull-right"> <aside> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/buddyicon.png" alt=""> 
-                            <p> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/nexticon.png" alt=""> <a href="#"> Create Free Account </a> </p>
+                            <p> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/nexticon.png" alt=""> <a href="<?php echo site_url(); ?>/register"> Create Free Account </a> </p>
                           </aside></div> 
                       </div>
                  </div>

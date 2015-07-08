@@ -1,10 +1,4 @@
 <?PHP 
-// $pageName = basename($_SERVER['REQUEST_URI'] );
-// $pageNameArray = array('index.php','about.php',  'contact.php');
-// $arr = explode("?", $pageName);
-// $pageName = $arr[0];
-// if(!in_array($pageName, $pageNameArray))
-//   $pageName = 'index.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,8 +25,8 @@
        <div class="container">
          <div class="span3 pull-right"> 
             <ul class="lists pull-right">
-             <li class="float leftpad10"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/login.png" alt=""> <a href="login.php">Login</a> </li>
-             <li class="float leftpad10"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/register.png" alt=""> <a href="register.php">Register</a> </li>
+             <li class="float leftpad10"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/login.png" alt=""> <a href="<?php echo site_url() ?>/login">Login</a> </li>
+             <li class="float leftpad10"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/register.png" alt=""> <a href="<?php echo site_url() ?>/register">Register</a> </li>
             </ul>
           </div> 
         </div> 
@@ -77,7 +71,7 @@
                             <li><a href="#">Testimonials</a></li>
                           </ul>
                         </li>
-                        <li <?php if($pageName=="addbooking.php") echo "class='active'";?>><a href="addbooking.php">Add Booking</a></li>
+                        <li <?php if($pageName=="addbooking.php") echo "class='active'";?>><a href="<?php echo site_url() ?>/addbooking">Add Booking</a></li>
                         <li <?php if($pageName=="CHAUSSURES.php") echo "class='active'";?>><a href="#">CHAUSSURES FEMME</a></li>
                         <li <?php if(get_current_page() =="links") echo "class='active'";?>><a href="<?php echo site_url() ?>/links">Link</a></li>
                         <li <?php if(get_current_page() =="newspapers") echo "class='active'";?>><a href="<?php echo site_url() ?>/newspapers">News</a></li>
