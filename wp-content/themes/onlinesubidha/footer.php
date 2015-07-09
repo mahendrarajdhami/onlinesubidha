@@ -58,7 +58,7 @@
         <hr class="rtliner" >
         <address>
           Phone: <?php echo $opt['footer_tel']; ?><br>
-          Email: <?php echo $opt['footer_mail']; ?> <br>
+          Email:<a href="mailto:<?php echo $opt['footer_mail']; ?>"><?php echo $opt['footer_mail']; ?></a> <br>
           <?php echo $opt['footer_address']; ?>
         </address> 
         <div class="row">
