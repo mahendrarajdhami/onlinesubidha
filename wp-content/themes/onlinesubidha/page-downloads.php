@@ -28,7 +28,7 @@
           <thead><tr><th><?php echo $category->name; ?></th></tr></thead>
           <tbody>
           <?php 
-          $myquery['tax_query'] = array( array('taxonomy' => $taxonomy,'field' => 'id','terms' => $category->term_id,'include_children' => flase,'operator' => 'IN'));
+          $myquery['tax_query'] = array( array('taxonomy' => $taxonomy,'field' => 'id','terms' => $category->term_id,'include_children' => false,'operator' => 'IN'));
           query_posts($myquery);
           if(have_posts()){ 
             while(have_posts()){ 
