@@ -7,7 +7,7 @@
 
 	//calling theme options and its framework
 	define('OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/inc/');
-    require_once dirname(__FILE__) . '/inc/whitewater-theme-options.php';
+    require_once dirname(__FILE__) . '/inc/theme-options.php';
 	//returns validated link which are used in footer using theme option
 	function validatedLink($link) {
     if($link==NULL || $link==''){

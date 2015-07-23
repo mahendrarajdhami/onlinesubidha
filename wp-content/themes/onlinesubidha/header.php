@@ -71,12 +71,12 @@
                             <li><a href="#">Testimonials</a></li>
                           </ul>
                         </li>
-                        <li <?php if($pageName=="addbooking.php") echo "class='active'";?>><a href="<?php echo site_url() ?>/addbooking">Add Booking</a></li>
-                        <li <?php if($pageName=="CHAUSSURES.php") echo "class='active'";?>><a href="#">CHAUSSURES FEMME</a></li>
+                        <li><a href="<?php echo site_url() ?>/addbooking">Add Booking</a></li>
+                        <li><a href="#">CHAUSSURES FEMME</a></li>
                         <li <?php if(get_current_page() =="links") echo "class='active'";?>><a href="<?php echo site_url() ?>/links">Link</a></li>
                         <li <?php if(get_current_page() =="newspapers") echo "class='active'";?>><a href="<?php echo site_url() ?>/newspapers">News</a></li>
                         <li <?php if(get_current_page() =="downloads") echo "class='active'";?>><a href="<?php echo site_url() ?>/downloads">Download</a></li>
-                        <li <?php if($pageName=="Femme.php") echo "class='active'";?>><a href="#">Femme</a></li>
+                        <li><a href="#">Femme</a></li>
                       </ul>
                     </div>
                   </div>
