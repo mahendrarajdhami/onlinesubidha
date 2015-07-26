@@ -14,9 +14,6 @@
       <div class="camera_wrap">
         <?php
           $option = get_option(onlinesubidha);
-          // var_dump($option);
-          // for ($i=1; $i <=3 ; $i++) { 
-          // if($option['onlinesubidha_banner_image'.$i]) echo "<div data-src=".$option['onlinesubidha_banner_image'.$i]."></div>";
           if($option['onlinesubidha_banner_image1']) echo "<div data-src=".$option['onlinesubidha_banner_image1']."></div>";
           if($option['onlinesubidha_banner_image2']) echo "<div data-src=".$option['onlinesubidha_banner_image2']."></div>";
           if($option['onlinesubidha_banner_image3']) echo "<div data-src=".$option['onlinesubidha_banner_image3']."></div>";
