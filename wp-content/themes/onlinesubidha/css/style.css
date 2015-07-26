@@ -1,7 +1,7 @@
 @font-face {
  font-family:'Ubuntu-M_0';
- src: url('../fonts/Ubuntu-M_0.eot');
- src: local('☺'), url('../fonts/Ubuntu-M_0.woff') format('woff'),  url('../fonts/Ubuntu-M_0.ttf') format('truetype'),  url('../fonts/Ubuntu-M_0.svg#webfont09a50pYu') format('svg');
+ src: url('../fonts/Ubuntu-M_0.ttf');
+ src: local('☺'), url('../fonts/Ubuntu-M_0.ttf') format('ttff'),  url('../fonts/Ubuntu-M_0.ttf') format('truetype'),  url('../fonts/Ubuntu-M_0.svg#webfont09a50pYu') format('svg');
  font-weight: normal;
  font-style: normal;
  font-stretch:normal;

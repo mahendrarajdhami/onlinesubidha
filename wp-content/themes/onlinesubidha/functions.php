@@ -217,6 +217,7 @@
   /*get current page slug*/
   function get_current_page(){
     global $post;
+    if(empty($post)) return false;
     $slug = get_post($post)->post_name;
     return $slug;
   }

@@ -29,7 +29,7 @@
              <li class="float leftpad10"> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/register.png" alt=""> <a href="<?php echo site_url() ?>/register">Register</a> </li>
             </ul>
           </div> 
-        </div> 
+        </div> -
       </div><!--header-top-->
       <div class="container">
         <div class="row">
@@ -47,7 +47,6 @@
                 </span>
               </div>
               <div class="navbar-left"></div>
-
               <div class="navbar navbar_">
                 <div class="navbar-inner navbar-inner_">
                   <div class="container">
