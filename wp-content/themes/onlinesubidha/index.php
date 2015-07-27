@@ -85,7 +85,29 @@
           		</ul>
           	</nav>-->
           </div>
-          <div class="span3 top20">
+          <div class="span3 top20" >
+            <?php
+            $taxonomy = 'add_cat';
+            $add_top_query['tax_query'] = array(
+              array(
+                'taxonomy' => $taxonomy,
+                'field' => 'slug',
+                'terms' => 'sidebar',
+                'operator' => 'IN'
+              )
+            );
+            $add_top_query['showposts'] = 3;
+            query_posts($add_top_query);
+            if(have_posts()): while( have_posts() ) : the_post();
+             ?>
+              <div class="advertise-box-side bottom20">
+                <?php
+                 if(has_post_thumbnail()){
+                  the_post_thumbnail('add_sidebar_feature_image');
+                 }
+                ?>
+              </div>
+             <?php endwhile;endif; wp_reset_query();?>
             <div class="advertise-box-side bottom20"> 
               <p>Advertise Here <br> 248px x 267px</p>
             </div>
@@ -119,10 +141,22 @@
               <p class="heading"> Feature Videos </p>
               <hr class="rtliner" >
                  <ul class="vilists top20">   
-                     <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/video.jpg" alt="" width="280" height="208"> </li>
-                     <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/video.jpg" alt="" width="280" height="208"> </li>
-                     <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/video.jpg" alt="" width="280" height="208"> </li>
-                     <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/video.jpg" alt="" width="280" height="208"> </li>
+                      <?php $args = array('post_type' => 'video','posts_per_page' => 4); $my_query = new WP_Query($args); global $post; if ($my_query->have_posts()) : while($my_query->have_posts()):$my_query->the_post(); ?>
+                       <a href="<?php echo validatedLink(get_field('link')); ?>">
+                         <li> 
+                           <?php
+                            if(has_post_thumbnail()){
+                             the_post_thumbnail('video_feature_image');
+                            }
+                            else{
+                             ?>
+                               <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/video.jpg" alt="" width="280" height="208">
+                             <?php
+                            }
+                           ?>
+                         </li>
+                       </a>
+                      <?php endwhile; endif; ?>
                  </ul> 
               </div>
             </div>
@@ -135,44 +169,67 @@
                   <p class="heading bottom10">Popular Business </p>
                   <hr class="rtliner" >
                   <ul class="list-news"> 
-                  <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/busi1.jpg" alt="" class="img1 right10" align="left">
-                  <strong> Silicon Valley Shows Signs of Dot-Com Frenzy </strong> 
-                  <dd>August 4 2010, 8 Comments</dd>
-                  <p>Lorem ipsum ex vix illud nonummy, novum tation et his. At vix scripta patrioque scribentur novum tation et his ex vix illud nonummy.</p>
-                  </li>
-                  <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/busi2.jpg" alt="" class="img1 right10" align="left">
-                  <strong> Silicon Valley Shows Signs of Dot-Com Frenzy </strong> 
-                  <dd>August 4 2010, 8 Comments</dd>
-                  <p>Lorem ipsum ex vix illud nonummy, novum tation et his. At vix scripta patrioque scribentur novum tation et his ex vix illud nonummy.</p>
-                  </li>
-                  <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/busi3.jpg" alt="" class="img1 right10" align="left">
-                  <strong> Silicon Valley Shows Signs of Dot-Com Frenzy </strong> 
-                  <dd>August 4 2010, 8 Comments</dd>
-                  <p>Lorem ipsum ex vix illud nonummy, novum tation et his. At vix scripta patrioque scribentur novum tation et his ex vix illud nonummy.</p>
-                  </li>
+                  <?php
+                  $taxonomy = 'news_cat';
+                  $news_cat_business_query['tax_query'] = array(
+                    array(
+                      'taxonomy' => $taxonomy,
+                      'field' => 'slug',
+                      'terms' => 'business',
+                      'operator' => 'IN'
+                    )
+                  );
+                  $news_cat_business_query['showposts'] = 3;
+                  query_posts($news_cat_business_query);
+                  if(have_posts()): while( have_posts() ) : the_post();
+                   ?>
+                    <li>
+                      <?php
+                       if(has_post_thumbnail()){
+                        the_post_thumbnail('feature-news-date-archive',array('class'=>'img1 right10','style'=>'float:left'));
+                       }
+                       else{
+                        ?>
+                          <img src="<?php echo get_stylesheet_directory_uri() ?>/images/busi1.jpg" alt="" class="img1 right10" align="left">
+                        <?php
+                       }
+                      ?>
+                      <strong><?php trimed_title('...',100); ?></strong> 
+                      <dd><?php $mydate=get_the_date(); echo $mydate; ?></dd>
+                      <p><?php trimed_excerpt(200); ?></p>
+                    </li>
+                   <?php endwhile;endif; wp_reset_query();?>
                   </ul>
                 </div>
                 <div class="span3">
                   <p class="heading bottom10">Recently Added Post </p>
                   <hr class="rtliner" >
                   <ul class="list-news">
-                    <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/post1.jpg" alt="" class="img1 right10" align="left">
-                      <strong>Fly Fishers Serving as Transports for Noxious Little Invaders </strong> 
-                      <dd>August 4 2010, 8 Comments</dd>
-                    </li>
-                    <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/post2.jpg" alt="" class="img1 right10" align="left">
-                      <strong> Fly Fishers Serving as Transports for Noxious Little Invaders </strong> 
-                      <dd>August 4 2010, 8 Comments</dd>
-                    </li>
+                    <?php $args = array('post_type' => 'news','posts_per_page' => 3); $my_query = new WP_Query($args); global $post; if ($my_query->have_posts()) : while($my_query->have_posts()):$my_query->the_post(); ?>
+                      <li> 
+                        <?php
+                         if(has_post_thumbnail()){
+                          the_post_thumbnail('feature-news-footer',array('class'=>'img1 right10','style'=>'align:left'));
+                         }
+                         else{
+                          ?>
+                            <img src="<?php echo get_stylesheet_directory_uri() ?>/images/70x70.jpg" class="img1 right10 wp-post-image" alt="70x70"  style="align:left">
+                          <?php
+                         }
+                        ?>
+                        <strong><?php trimed_title('...',35); ?></strong> 
+                        <dd><?php $mydate=get_the_date(); echo $mydate; ?></dd>
+                      </li>
+                    <?php endwhile; endif; ?>
                   </ul> 
                 </div>
             </div>
             </div>    
-            <div class="span3 top25">
+            <!-- <div class="span3 top25">
                 <div class="advertise-box-side bottom20 "> 
                   <p>Advertise Here <br> 248px x 267px</p>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="clearfix"></div>
@@ -180,13 +237,21 @@
           <div class="span12 top20 left-0 ">
             <p class="heading"> Photo Gallery </p>
             <hr class="rtliner" >
-            <ul class="vilists top20">   
-             <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/educa.jpg" alt="" width="171" height="15" class="img1"> </li>
-             <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/home.jpg" alt=""  width="171" height="154" class="img1" > </li>
-             <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/pet.jpg" alt=""  width="171" height="154" class="img1"> </li>
-             <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/travel.jpg" alt=""  width="171" height="154" class="img1"> </li>
-             <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/travel.jpg" alt=""  width="171" height="154" class="img1"> </li>
-             <li> <img src="<?php echo get_stylesheet_directory_uri(); ?>/images/travel.jpg" alt=""  width="171" height="154" class="img1"> </li>
+            <ul class="vilists top20"> 
+            <?php
+                $args = array('post_type' => 'gallery','posts_per_page'=>1);//here posts_per_page means images from recent two galleries.
+                $my_query = new WP_Query($args);
+                  if($my_query->have_posts()):
+                  while ($my_query->have_posts()) : $my_query->the_post();
+                    $image_query = new WP_Query( array( 'post_type' => 'attachment', 'post_status' => 'inherit', 'post_mime_type' => 'image', 'posts_per_page' => -1, 'post_parent' => get_the_ID() ) );
+                    while( $image_query->have_posts() ) {
+                      $image_query->the_post();
+                      ?>
+                      <a href="javascript:void(0);" title="Gallery"><li class="img1"><?php echo wp_get_attachment_image( get_the_ID() ); ?></li></a>
+                      <?php
+                    }
+                endwhile; endif; wp_reset_query();
+            ?>  
             </ul> 
           </div>
         </div>

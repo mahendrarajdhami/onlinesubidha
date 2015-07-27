@@ -38,12 +38,28 @@
               <div class="clearfix header-block-pad">
                 <h1 class="brand"><a href="<?php echo get_home_url(); ?>"><img src="<?php echo get_stylesheet_directory_uri(); ?>/images/logo.psd.jpg" alt=""></a></h1>
                 <span class="contacts">
-                   <div class="advertise-box pull-left right10"> 
-                      <p>Advertise Here 338px x 115px</p>
-                   </div>
-                  <div class="advertise-box pull-left offset1"> 
-                    <p>Advertise Here 338px x 115px</p>
-                  </div>
+                  <?php
+                  $taxonomy = 'add_cat';
+                  $add_top_query['tax_query'] = array(
+                    array(
+                      'taxonomy' => $taxonomy,
+                      'field' => 'slug',
+                      'terms' => 'top',
+                      'operator' => 'IN'
+                    )
+                  );
+                  $add_top_query['showposts'] = 2;
+                  query_posts($add_top_query);
+                  if(have_posts()): while( have_posts() ) : the_post();
+                   ?>
+                    <div class="advertise-box pull-left right10">
+                      <?php
+                       if(has_post_thumbnail()){
+                        the_post_thumbnail('add_top_feature_image');
+                       }
+                      ?>
+                    </div>
+                   <?php endwhile;endif; wp_reset_query();?>
                 </span>
               </div>
               <div class="navbar-left"></div>

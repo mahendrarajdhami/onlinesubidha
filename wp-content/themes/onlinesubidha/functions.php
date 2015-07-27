@@ -25,49 +25,6 @@
   function onlinesubidha(){
     load_theme_textdomain('onlinesubidha', get_template_directory() . '/languages');
   }
-
-  //give  short title of post page
-  function custom_shortTitle($after = '', $length, $content = null) {
-    if ($content) {
-      $scontent = strip_tags($content);
-      if (mb_strlen($scontent) > $length) {
-        $scontent = mb_substr($scontent, 0, $length);
-        echo $scontent . $after;
-      }
-    }
-    else {
-      $mytitle = get_the_title();
-      $smytitle = strip_tags($mytitle);
-      if (mb_strwidth($smytitle) > $length) {
-        $smytitle = mb_strimwidth($smytitle, 0, $length, "");
-        echo $smytitle . $after;
-      }
-      else{
-        echo $smytitle;
-      }
-    }
-  }
-
-  /*echo trimed excerpt for post */
-  function trimed_excerpt($charlength) {
-   $excerpt = get_the_excerpt();
-   $charlength++;
-   if ( mb_strlen( $excerpt ) > $charlength ) {
-     $subex = mb_substr( $excerpt, 0, $charlength - 5 );
-     $exwords = explode( ' ', $subex );
-     $excut = -( mb_strlen(mb_strwidth( $exwords[ count( $exwords ) - 1 ] ) ));
-     if ( $excut < 0 ) {
-       echo mb_substr( $subex, 0, $excut );
-     } else {
-       echo $subex;
-     }
-     echo '...';
-
-   } else {
-     echo $excerpt;
-   }
-  }
-
   // to add custom css to admin
   function my_custom_css() {
     $path = get_template_directory_uri();
@@ -100,6 +57,9 @@
     add_image_size('feature-news-date-archive',170,90,true);
     add_image_size('cat_header_image',21,23,true);
     add_image_size('cat_feature_image',199,154,true);
+    add_image_size('video_feature_image',280,208,true);
+    add_image_size('add_top_feature_image',343,121,true);
+    add_image_size('add_sidebar_feature_image',254,273,true);
   }
   /*@mahen*/
   /*hiding comment menu from admin*/
@@ -140,6 +100,26 @@
       }
     }
   }
+
+  /*echo trimed excerpt for post */
+    function trimed_excerpt($charlength) {
+     $excerpt = get_the_excerpt();
+     $charlength++;
+     if ( mb_strlen( $excerpt ) > $charlength ) {
+       $subex = mb_substr( $excerpt, 0, $charlength - 5 );
+       $exwords = explode( ' ', $subex );
+       $excut = -( mb_strlen(mb_strwidth( $exwords[ count( $exwords ) - 1 ] ) ));
+       if ( $excut < 0 ) {
+         echo mb_substr( $subex, 0, $excut );
+       } else {
+         echo $subex;
+       }
+       echo '...';
+
+     } else {
+       echo $excerpt;
+     }
+    }
   /*get current page slug*/
   function get_current_page(){
     global $post;
